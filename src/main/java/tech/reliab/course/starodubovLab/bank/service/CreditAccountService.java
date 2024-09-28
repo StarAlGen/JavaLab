@@ -1,4 +1,4 @@
 package tech.reliab.course.starodubovLab.bank.service;
 
-public class BankService {
+public interface CreditAccountService {
 }
