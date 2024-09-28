@@ -82,7 +82,7 @@ public class User extends Person {
         this.creditRating = creditRating;
     }
 
-    public void initWithDefaults(){
+    private void initWithDefaults(){
         placeOfWork = "none";
         monthlyIncome = new BigDecimal("0");
         bank = null;
