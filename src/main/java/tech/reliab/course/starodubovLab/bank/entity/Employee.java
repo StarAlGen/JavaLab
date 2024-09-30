@@ -78,7 +78,9 @@ public class Employee extends Person {
 
     public void setBank(Bank bank){
         this.bank  = bank;
-        bank.setEmployeeCount(bank.getEmployeeCount() + 1);
+        if (bank != null){
+            bank.setEmployeeCount(bank.getEmployeeCount() + 1);
+        }
     }
 
     public boolean isWorkingFromHome(){
