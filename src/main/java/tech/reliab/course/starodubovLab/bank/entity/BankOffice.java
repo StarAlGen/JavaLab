@@ -116,8 +116,11 @@ public class BankOffice {
         return this.bank;
     }
 
-    public void setBank(Bank bank){
+    public void setBank(Bank bank) {
         this.bank = bank;
+        if (bank != null) {
+            bank.setOfficeCount(bank.getOfficeCount() + 1);
+        }
     }
 
     public boolean getIsWorking(){
