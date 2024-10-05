@@ -12,7 +12,7 @@ public class Bank {
     private int officeCount;
     private int atmCount;
     private int employeeCount;
-    private int clientCount;
+    private int userCount;
     private byte rating;
     private BigDecimal totalMoney;
     private BigDecimal interestRate;
@@ -27,7 +27,7 @@ public class Bank {
         this.officeCount = bank.officeCount;
         this.atmCount = bank.atmCount;
         this.employeeCount = bank.employeeCount;
-        this.clientCount = bank.clientCount;
+        this.userCount = bank.userCount;
         this.rating = bank.rating;
         this.totalMoney = bank.totalMoney;
         this.interestRate = bank.interestRate;
@@ -52,7 +52,7 @@ public class Bank {
                 ",\n officeCount='" + getOfficeCount() + "'" +
                 ",\n atmCount='" + getAtmCount() + "'" +
                 ",\n employeeCount='" + getEmployeeCount() + "'" +
-                ",\n clientCount='" + getClientCount() + "'" +
+                ",\n clientCount='" + getUserCount() + "'" +
                 ",\n rating='" + getRating() + "'" +
                 ",\n totalMoney='" + String.format("%.2f", getTotalMoney()) + "'" +
                 ",\n interestRate='" + String.format("%.2f", getInterestRate()) + "'" +
@@ -99,12 +99,12 @@ public class Bank {
         this.employeeCount = employeeCount;
     }
 
-    public int getClientCount(){
-        return this.clientCount;
+    public int getUserCount(){
+        return this.userCount;
     }
 
-    public void setClientCount(int clientCount){
-        this.clientCount = clientCount;
+    public void setUserCount(int userCount){
+        this.userCount = userCount;
     }
 
     public byte getRating(){
@@ -137,9 +137,9 @@ public class Bank {
         officeCount = 0;
         atmCount = 0;
         employeeCount = 0;
-        clientCount = 0;
-        rating = 0;
-        totalMoney = new BigDecimal("0");
-        interestRate = new BigDecimal("0");
+        userCount = 0;
+        rating = (byte) (Math.random() * (MAX_RATING + 1));
+        interestRate = new BigDecimal(String.valueOf(MAX_INTEREST_RATE.doubleValue() / (this.rating + 1)));
+        totalMoney = new BigDecimal(String.valueOf(Math.random() * MAX_TOTAL_MONEY.doubleValue()));
     }
 }
