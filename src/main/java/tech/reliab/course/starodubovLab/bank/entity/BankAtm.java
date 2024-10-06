@@ -25,6 +25,36 @@ public class BankAtm {
         initWithDefaults();
     }
 
+    public BankAtm(UUID id, String name, String address, Status status, Bank bank, BankOffice bankOffice, Employee employee, boolean isCashWithdrawalAvailable
+    , boolean isCashDepositAvailable, BigDecimal totalMoney, BigDecimal maintenanceCost){
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.status = status;
+        this.bank = bank;
+        this.bankOffice = bankOffice;
+        this.employee = employee;
+        this.isCashWithdrawalAvailable = isCashWithdrawalAvailable;
+        this.isCashDepositAvailable = isCashDepositAvailable;
+        this.totalMoney = totalMoney;
+        this.maintenanceCost = maintenanceCost;
+    }
+
+    public BankAtm(String name, String address, Status status, Bank bank, BankOffice bankOffice, Employee employee, boolean isCashWithdrawalAvailable
+            , boolean isCashDepositAvailable, BigDecimal totalMoney, BigDecimal maintenanceCost){
+        initWithDefaults();
+        this.name = name;
+        this.address = address;
+        this.status = status;
+        this.bank = bank;
+        this.bankOffice = bankOffice;
+        this.employee = employee;
+        this.isCashWithdrawalAvailable = isCashWithdrawalAvailable;
+        this.isCashDepositAvailable = isCashDepositAvailable;
+        this.totalMoney = totalMoney;
+        this.maintenanceCost = maintenanceCost;
+    }
+
     public BankAtm(BankAtm bankAtm){
         this.id = bankAtm.id;
         this.name = bankAtm.name;
