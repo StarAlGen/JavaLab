@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 public class User extends Person {
+    public static final BigDecimal MAX_MONTHLY_INCOME = new BigDecimal("10000");
     private String placeOfWork;
     private BigDecimal monthlyIncome;
     private Bank bank;
@@ -87,8 +88,8 @@ public class User extends Person {
 
     private void initWithDefaults(){
         placeOfWork = "none";
-        monthlyIncome = new BigDecimal("0");
+        monthlyIncome = new BigDecimal(String.valueOf(Math.random()*MAX_MONTHLY_INCOME.doubleValue()));
         bank = null;
-        creditRating = new BigDecimal("0");
+        creditRating = new BigDecimal(String.valueOf((monthlyIncome.intValue() / 1000 + 1) * 100));
     }
 }
