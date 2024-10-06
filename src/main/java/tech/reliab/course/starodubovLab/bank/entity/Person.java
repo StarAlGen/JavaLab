@@ -35,7 +35,7 @@ public class Person {
         return "Person:{" +
                 "\n id='" + getId() + "'" +
                 ",\n name='" + getFullName() + "'" +
-                ",\n birthdDate='" + getBirthDate() + "'" +
+                ",\n birthDate='" + getBirthDate() + "'" +
                 "\n}";
     }
 
