@@ -6,6 +6,8 @@ import tech.reliab.course.starodubovLab.bank.service.CreditAccountService;
 import java.math.BigDecimal;
 
 public class CreditAccountServiceImpl implements CreditAccountService {
+
+    @Override
     public CreditAccount create(CreditAccount creditAccount){
         if (creditAccount == null){
             return null;
@@ -29,6 +31,7 @@ public class CreditAccountServiceImpl implements CreditAccountService {
         return new CreditAccount(creditAccount);
     }
 
+    @Override
     public boolean makeMonthlyPayment(CreditAccount creditAccount){
         if (creditAccount == null || creditAccount.getPaymentAccount() == null){
             System.err.println("Error: CreditAccount - no account to take money from");
