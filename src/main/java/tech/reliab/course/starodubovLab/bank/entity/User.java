@@ -72,6 +72,9 @@ public class User extends Person {
 
     public void setBank(Bank bank) {
         this.bank = bank;
+        if (bank != null){
+            bank.setUserCount(bank.getUserCount() + 1);
+        }
     }
 
     public BigDecimal getCreditRating(){
