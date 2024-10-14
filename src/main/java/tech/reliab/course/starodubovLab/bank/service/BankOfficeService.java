@@ -5,19 +5,28 @@ import tech.reliab.course.starodubovLab.bank.entity.BankOffice;
 import tech.reliab.course.starodubovLab.bank.entity.Employee;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public interface BankOfficeService {
-    BankOffice create (BankOffice bankOffice);
+    BankOffice create(BankOffice bankOffice);
 
-    boolean installAtm (BankOffice bankOffice, BankAtm bankAtm);
+    public void printBankOfficeData(int id);
 
-    boolean removeAtm (BankOffice bankOffice, BankAtm bankAtm);
+    public BankOffice getBankOfficeById(int id);
+
+    public List<BankOffice> getAllOffices();
+
+    public List<Employee> getAllEmployeesByOfficeId(int id);
+
+    boolean installAtm(int id, BankAtm bankAtm);
+
+    boolean removeAtm(BankOffice bankOffice, BankAtm bankAtm);
 
     boolean depositMoney(BankOffice bankOffice, BigDecimal amount);
 
     boolean withdrawMoney(BankOffice bankOffice, BigDecimal amount);
 
-    boolean addEmployee(BankOffice bankOffice, Employee employee);
+    boolean addEmployee(int id, Employee employee);
 
     boolean removeEmployee(BankOffice bankOffice, Employee employee);
 }

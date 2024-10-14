@@ -1,28 +1,45 @@
 package tech.reliab.course.starodubovLab.bank.service;
 
-import tech.reliab.course.starodubovLab.bank.entity.Bank;
-import tech.reliab.course.starodubovLab.bank.entity.BankOffice;
-import tech.reliab.course.starodubovLab.bank.entity.Employee;
-import tech.reliab.course.starodubovLab.bank.entity.User;
+import tech.reliab.course.starodubovLab.bank.entity.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public interface BankService {
-    Bank create(Bank bank);
 
-    boolean addOffice(Bank bank, BankOffice bankOffice);
+    public Bank create(Bank bank);
 
-    boolean removeOffice (Bank bank, BankOffice bankOffice);
+    public Bank getBankById(int bankId);
 
-    boolean addEmployee(Bank bank, Employee employee);
+    public void setBankOfficeService(BankOfficeService bankOfficeService);
 
-    boolean removeEmployee(Bank bank, Employee employee);
+    public List<BankOffice> getAllOfficesByBankId(int id);
 
-    boolean addUser(Bank bank, User user);
+    public void setClientService(UserService bankOfficeService);
 
-    boolean removeUser(Bank bank, User user);
+    public boolean deleteBankById(int bankId);
 
-    boolean depositMoney(Bank bank, BigDecimal amount);
+    public List<Bank> getAllBanks();
 
-    boolean withdrawMoney(Bank bank, BigDecimal amount);
+    public void printBankData(int bankId);
+
+    public boolean addOffice(int bankId, BankOffice bankOffice);
+
+    public boolean removeOffice(int bankId, BankOffice bankOffice);
+
+    public boolean addEmployee(Bank bank, Employee employee);
+
+    public boolean removeEmployee(Bank bank, Employee employee);
+
+    public boolean addClient(int id, User client);
+
+    public boolean removeClient(Bank bank, User client);
+
+    public BigDecimal calculateInterestRate(Bank bank);
+
+    public boolean depositMoney(int id, BigDecimal amount);
+
+    public boolean withdrawMoney(int id, BigDecimal amount);
+
+    public boolean approveCredit(Bank bank, CreditAccount account, Employee employee);
 }
