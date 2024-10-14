@@ -1,29 +1,34 @@
 package tech.reliab.course.starodubovLab.bank.entity;
 
-import java.util.UUID;
-
 public class Account {
-    protected UUID id;
+    private static int currentId;
+    protected int id;
     protected User user;
     protected Bank bank;
 
-    public Account(){
+    private void initId() {
+        id = currentId++;
+    }
+
+    public Account() {
+        initId();
         initWithDefaults();
     }
 
-    public Account(UUID id, User user, Bank bank){
+    public Account(User user, Bank bank) {
+        initId();
+        initWithDefaults();
+        this.user = user;
+        this.bank = bank;
+    }
+
+    public Account(int id, User user, Bank bank) {
         this.id = id;
         this.user = user;
         this.bank = bank;
     }
 
-    public Account(User user, Bank bank){
-        this.id = UUID.randomUUID();
-        this.user = user;
-        this.bank = bank;
-    }
-
-    public Account(Account account){
+    public Account(Account account) {
         this.id = account.id;
         this.user = account.user;
         this.bank = account.bank;
@@ -33,28 +38,28 @@ public class Account {
     public String toString() {
         return "Account:{" +
                 "\n id='" + getId() + "'" +
-                ",\n client='" + getUser() + "'" +
-                ",\n bank='" + getBank() + "'" +
+                ",\n client='" + getClient() + "'" +
+                ",\n bank='" + getBank().getName() + "'" +
                 "\n}";
     }
 
-    public UUID getId(){
+    public int getId() {
         return this.id;
     }
 
-    public void setId(UUID id){
+    public void setId(int id) {
         this.id = id;
     }
 
-    public User getUser(){
+    public User getClient() {
         return this.user;
     }
 
-    public void setUser(User user) {
+    public void setClient(User user) {
         this.user = user;
     }
 
-    public Bank getBank(){
+    public Bank getBank() {
         return this.bank;
     }
 
@@ -62,8 +67,7 @@ public class Account {
         this.bank = bank;
     }
 
-    private void initWithDefaults(){
-        id = UUID.randomUUID();
+    private void initWithDefaults() {
         user = null;
         bank = null;
     }

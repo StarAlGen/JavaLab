@@ -2,53 +2,53 @@ package tech.reliab.course.starodubovLab.bank.entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.UUID;
 
 public class Employee extends Person {
-    public enum Job{
-        Manager,
-        Worker
+
+    public enum Job {
+        CEO,
+        VaultKeeper,
+        Programmer,
+        Lawyer,
+        Cashier,
+        Manager;
+
+        public static Job getRandom() {
+            return values()[(int) (Math.random() * values().length)];
+        }
     }
+
     private Job job;
     private Bank bank;
     private boolean isWorkingFromHome;
     private BankOffice bankOffice;
     private boolean isCreditAvailable;
-    private BigDecimal salaryAmount;
+    private BigDecimal salary;
 
-    public Employee(){
+    public Employee() {
         super();
         initWithDefaults();
     }
 
-    public Employee(UUID id, String fullName, LocalDate birthDate, Job job, Bank bank, boolean isWorkingFromHome, BankOffice bankOffice, boolean isCreditAvailable, BigDecimal salaryAmount){
-        super(id,fullName,birthDate);
-        this.job = job;
-        this.bank = bank;
-        this.isWorkingFromHome = isWorkingFromHome;
-        this.bankOffice = bankOffice;
-        this.isCreditAvailable = isCreditAvailable;
-        this.salaryAmount = salaryAmount;
-    }
-
-    public Employee(String fullName, LocalDate birthDate, Job job, Bank bank, boolean isWorkingFromHome, BankOffice bankOffice, boolean isCreditAvailable, BigDecimal salaryAmount){
-        super(fullName,birthDate);
-        this.job = job;
-        this.bank = bank;
-        this.isWorkingFromHome = isWorkingFromHome;
-        this.bankOffice = bankOffice;
-        this.isCreditAvailable = isCreditAvailable;
-        this.salaryAmount = salaryAmount;
-    }
-
-    public Employee (Employee employee){
-        super(employee.id,employee.fullName,employee.birthDate);
+    public Employee(Employee employee) {
+        super(employee.id, employee.name, employee.birthDate);
         this.job = employee.job;
-        this.bank = employee.bank;
+        this.bank = new Bank(employee.bank);
         this.isWorkingFromHome = employee.isWorkingFromHome;
-        this.bankOffice = employee.bankOffice;
+        this.bankOffice = new BankOffice(employee.bankOffice);
         this.isCreditAvailable = employee.isCreditAvailable;
-        this.salaryAmount = employee.salaryAmount;
+        this.salary = employee.salary;
+    }
+
+    public Employee(String name, LocalDate birthDate, Job job, Bank bank, boolean isWorkingFromHome,
+                    BankOffice bankOffice, boolean isCreditAvailable, BigDecimal salary) {
+        super(name, birthDate);
+        this.job = job;
+        this.bank = bank;
+        this.isWorkingFromHome = isWorkingFromHome;
+        this.bankOffice = bankOffice;
+        this.isCreditAvailable = isCreditAvailable;
+        this.salary = salary;
     }
 
     @Override
@@ -56,15 +56,15 @@ public class Employee extends Person {
         return "Employee:{" +
                 "\n person='" + super.toString() + "'" +
                 ",\n job='" + getJob() + "'" +
-                ",\n bank='" + getBank() + "'" +
-                ",\n isWorkingFromHome='" + isWorkingFromHome() + "'" +
+                ",\n bank='" + getBank().getName() + "'" +
+                ",\n isWorkingFromHome='" + isIsWorkingFromHome() + "'" +
                 ",\n bankOffice='" + getBankOffice() + "'" +
-                ",\n isCreditAvailable='" + isCreditAvailable() + "'" +
-                ",\n salary='" + String.format("%.2f", getSalaryAmount()) + "'" +
+                ",\n isCreditAvailable='" + isIsCreditAvailable() + "'" +
+                ",\n salary='" + String.format("%.2f", getSalary()) + "'" +
                 "\n}";
     }
 
-    public Job getJob(){
+    public Job getJob() {
         return this.job;
     }
 
@@ -72,26 +72,27 @@ public class Employee extends Person {
         this.job = job;
     }
 
-    public Bank getBank(){
+    public Bank getBank() {
         return this.bank;
     }
 
-    public void setBank(Bank bank){
-        this.bank  = bank;
-        if (bank != null){
-            bank.setEmployeeCount(bank.getEmployeeCount() + 1);
-        }
+    public void setBank(Bank bank) {
+        this.bank = bank;
     }
 
-    public boolean isWorkingFromHome(){
+    public boolean isIsWorkingFromHome() {
         return this.isWorkingFromHome;
     }
 
-    public void setWorkingFromHome(boolean workingFromHome) {
-        isWorkingFromHome = workingFromHome;
+    public boolean getIsWorkingFromHome() {
+        return this.isWorkingFromHome;
     }
 
-    public BankOffice getBankOffice(){
+    public void setIsWorkingFromHome(boolean isWorkingFromHome) {
+        this.isWorkingFromHome = isWorkingFromHome;
+    }
+
+    public BankOffice getBankOffice() {
         return this.bankOffice;
     }
 
@@ -99,28 +100,32 @@ public class Employee extends Person {
         this.bankOffice = bankOffice;
     }
 
-    public boolean isCreditAvailable(){
+    public boolean isIsCreditAvailable() {
         return this.isCreditAvailable;
     }
 
-    public void setCreditAvailable(boolean creditAvailable) {
-        isCreditAvailable = creditAvailable;
+    public boolean getIsCreditAvailable() {
+        return this.isCreditAvailable;
     }
 
-    public BigDecimal getSalaryAmount(){
-        return this.salaryAmount;
+    public void setIsCreditAvailable(boolean isCreditAvailable) {
+        this.isCreditAvailable = isCreditAvailable;
     }
 
-    public void setSalaryAmount(BigDecimal salaryAmount) {
-        this.salaryAmount = salaryAmount;
+    public BigDecimal getSalary() {
+        return this.salary;
     }
 
-    private void initWithDefaults(){
+    public void setSalary(BigDecimal salary) {
+        this.salary = salary;
+    }
+
+    private void initWithDefaults() {
         job = null;
         bank = null;
         isWorkingFromHome = false;
-        bankOffice =  null;
+        bankOffice = null;
         isCreditAvailable = false;
-        salaryAmount = new BigDecimal("0");
+        salary = new BigDecimal("0");
     }
 }

@@ -1,61 +1,68 @@
 package tech.reliab.course.starodubovLab.bank.entity;
 
 import java.time.LocalDate;
-import java.util.UUID;
+import java.time.format.DateTimeFormatter;
 
 public class Person {
-    protected UUID id;
-    protected String fullName;
+    private static int currentId;
+    protected int id;
+    protected String name;
     protected LocalDate birthDate;
 
-    public Person(){
+    private void initId() {
+        id = currentId++;
+    }
+
+    public Person() {
+        initId();
         initWithDefaults();
     }
 
-    public Person(UUID id, String fullName, LocalDate birthDate){
-        this.id = id;
-        this.fullName = fullName;
-        this.birthDate = birthDate;
-    }
-
-    public Person(String fullName, LocalDate birthDate){
-        initWithDefaults();
-        this.fullName = fullName;
-        this.birthDate = birthDate;
-    }
-
-    public Person(Person person){
+    public Person(Person person) {
         this.id = person.id;
-        this.fullName = person.fullName;
+        this.name = person.name;
         this.birthDate = person.birthDate;
+    }
+
+    public Person(String name, LocalDate birthDate) {
+        initId();
+        initWithDefaults();
+        this.name = name;
+        this.birthDate = birthDate;
+    }
+
+    public Person(int id, String name, LocalDate birthDate) {
+        this.id = id;
+        this.name = name;
+        this.birthDate = birthDate;
     }
 
     @Override
     public String toString() {
         return "Person:{" +
                 "\n id='" + getId() + "'" +
-                ",\n name='" + getFullName() + "'" +
-                ",\n birthDate='" + getBirthDate() + "'" +
+                ",\n name='" + getName() + "'" +
+                ",\n birthdDate='" + getBirthDate().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) + "'" +
                 "\n}";
     }
 
-    public UUID getId(){
+    public int getId() {
         return this.id;
     }
 
-    public void setId(UUID id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getFullName(){
-        return this.fullName;
+    public String getName() {
+        return this.name;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public LocalDate getBirthDate(){
+    public LocalDate getBirthDate() {
         return this.birthDate;
     }
 
@@ -63,9 +70,8 @@ public class Person {
         this.birthDate = birthDate;
     }
 
-    private void initWithDefaults(){
-        id = UUID.randomUUID();
-        fullName = "none";
+    private void initWithDefaults() {
+        name = "No name";
         birthDate = null;
     }
 }
