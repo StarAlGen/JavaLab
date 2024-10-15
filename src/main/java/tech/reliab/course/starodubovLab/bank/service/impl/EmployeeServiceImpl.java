@@ -2,43 +2,57 @@ package tech.reliab.course.starodubovLab.bank.service.impl;
 
 import tech.reliab.course.starodubovLab.bank.entity.BankOffice;
 import tech.reliab.course.starodubovLab.bank.entity.Employee;
+import tech.reliab.course.starodubovLab.bank.service.BankOfficeService;
 import tech.reliab.course.starodubovLab.bank.service.EmployeeService;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class EmployeeServiceImpl implements EmployeeService {
 
-    @Override
-    public Employee create(Employee employee){
-        if (employee == null){
-            return null;
-        }
-        if (employee.getBank() == null){
-            System.err.println("Error: Employee - no bank");
-            return null;
-        }
-        if (employee.getBankOffice() == null){
-            System.err.println("Error: Employee - no office");
-            return null;
-        }
-        if (employee.getSalaryAmount().signum() <= 0){
-            System.err.println("Error: Employee - salary should not be negative or equal to zero");
-            return null;
-        }
-        return new Employee(employee);
+    private final Map<Integer, Employee> employeesTable = new HashMap<>();
+    private final BankOfficeService bankOfficeService;
+
+    public EmployeeServiceImpl(BankOfficeService bankOfficeService) {
+        this.bankOfficeService = bankOfficeService;
     }
 
     @Override
-    public boolean transferEmployee(Employee employee, BankOffice bankOffice){
-        if (employee != null && bankOffice != null){
-            if (employee.getBank() == bankOffice.getBank()){
-                employee.setBankOffice(bankOffice);
-            }
-            else{
-                employee.getBank().setEmployeeCount(employee.getBank().getEmployeeCount() - 1);
-                employee.setBank(bankOffice.getBank());
-                employee.setBankOffice(bankOffice);
-            }
-            return true;
+    public Employee create(Employee employee) {
+        if (employee == null) {
+            return null;
         }
-        return false;
+
+        if (employee.getSalary().signum() < 0) {
+            System.err.println("Error: Employee - salary must be non-negative");
+            return null;
+        }
+
+        Employee newEmployee = new Employee(employee);
+        employeesTable.put(newEmployee.getId(), newEmployee);
+        bankOfficeService.addEmployee(newEmployee.getBankOffice().getId(), newEmployee);
+
+        return newEmployee;
+    }
+
+    @Override
+    public boolean transferEmployee(Employee employee, BankOffice bankOffice) {
+        return true;
+    }
+
+    @Override
+    public List<Employee> getAllEmployees() {
+        return new ArrayList<Employee>(employeesTable.values());
+    }
+
+    @Override
+    public Employee getEmployeeById(int id) {
+        Employee employee = employeesTable.get(id);
+        if (employee == null) {
+            System.err.println("Employee with id " + id + " is not found");
+        }
+        return employee;
     }
 }

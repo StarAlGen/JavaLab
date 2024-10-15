@@ -14,15 +14,15 @@ public interface UserService {
 
     public User getClientById(int id);
 
-    public List<User> getAllClients();
+    public List<User> getAllUsers();
 
     public boolean addPaymentAccount(int id, PaymentAccount account);
 
     public boolean addCreditAccount(int id, CreditAccount account);
 
-    public List<PaymentAccount> getAllPaymentAccountsByClientId(int id);
+    public List<PaymentAccount> getAllPaymentAccountsByUserId(int id);
 
-    public List<CreditAccount> getAllCreditAccountsByClientId(int id);
+    public List<CreditAccount> getAllCreditAccountsByUserId(int id);
 
     BigDecimal calculateCreditRating(User user);
 }
