@@ -32,7 +32,7 @@ public class PaymentAccountServiceImpl implements PaymentAccountService {
 
         PaymentAccount newAccount = new PaymentAccount(paymentAccount);
         paymentAccountsTable.put(newAccount.getId(), newAccount);
-        userService.addPaymentAccount(newAccount.getClient().getId(), newAccount);
+        userService.addPaymentAccount(newAccount.getUser().getId(), newAccount);
 
         return newAccount;
     }

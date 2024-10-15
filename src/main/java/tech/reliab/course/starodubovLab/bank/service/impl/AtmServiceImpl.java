@@ -65,7 +65,7 @@ public class AtmServiceImpl implements AtmService {
             System.err.println("Error: BankAtm cannot deposit money - amount is not positive");
             return false;
         }
-        if (!bankAtm.getIsCashDepositAvailable()) {
+        if (!bankAtm.isCashDepositAvailable()) {
             System.err.println("Error: BankAtm cannot deposit money - deposit is not allowed");
             return false;
         }
@@ -83,7 +83,7 @@ public class AtmServiceImpl implements AtmService {
             System.err.println("Error: BankAtm cannot withdraw money - amount is not positive");
             return false;
         }
-        if (!bankAtm.getIsCashDepositAvailable()) {
+        if (!bankAtm.isCashDepositAvailable()) {
             System.err.println("Error: BankAtm cannot withdraw money - deposit is not allowed");
             return false;
         }

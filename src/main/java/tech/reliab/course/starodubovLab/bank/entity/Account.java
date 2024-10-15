@@ -39,7 +39,7 @@ public class Account {
     public String toString() {
         return "Account:{" +
                 "\n id='" + getId() + "'" +
-                ",\n client='" + getUser() + "'" +
+                ",\n user='" + getUser() + "'" +
                 ",\n bank='" + getBank().getName() + "'" +
                 "\n}";
     }

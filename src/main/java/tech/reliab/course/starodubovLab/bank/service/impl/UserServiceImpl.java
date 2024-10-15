@@ -15,8 +15,8 @@ import java.util.Map;
 
 public class UserServiceImpl implements UserService {
     private final Map<Integer, User> usersTable = new HashMap<>();
-    private final Map<Integer, List<PaymentAccount>> paymentAccountsByClientIdTable = new HashMap<>();
-    private final Map<Integer, List<CreditAccount>> creditAccountsByClientIdTable = new HashMap<>();
+    private final Map<Integer, List<PaymentAccount>> paymentAccountsByUserIdTable = new HashMap<>();
+    private final Map<Integer, List<CreditAccount>> creditAccountsByUserIdTable = new HashMap<>();
     private final BankService bankService;
 
     public UserServiceImpl(BankService bankService) {
@@ -30,23 +30,23 @@ public class UserServiceImpl implements UserService {
         }
 
         if (user.getBank() == null) {
-            System.err.println("Error: Client - must have bank");
+            System.err.println("Error: User - must have bank");
             return null;
         }
 
-        User createdClient = new User(user);
+        User createdUser = new User(user);
 
         final BigDecimal monthlyIncome = BigRandom.between(new BigDecimal("0.0"), new BigDecimal("1.0"))
                 .multiply(User.MAX_MONTHLY_INCOME);
-        createdClient.setMonthlyIncome(monthlyIncome);
-        calculateCreditRating(createdClient);
+        createdUser.setMonthlyIncome(monthlyIncome);
+        calculateCreditRating(createdUser);
 
-        usersTable.put(createdClient.getId(), createdClient);
-        paymentAccountsByClientIdTable.put(createdClient.getId(), new ArrayList<>());
-        creditAccountsByClientIdTable.put(createdClient.getId(), new ArrayList<>());
-        bankService.addClient(user.getBank().getId(), createdClient);
+        usersTable.put(createdUser.getId(), createdUser);
+        paymentAccountsByUserIdTable.put(createdUser.getId(), new ArrayList<>());
+        creditAccountsByUserIdTable.put(createdUser.getId(), new ArrayList<>());
+        bankService.addUser(user.getBank().getId(), createdUser);
 
-        return createdClient;
+        return createdUser;
     }
 
     @Override
@@ -60,7 +60,7 @@ public class UserServiceImpl implements UserService {
     public boolean addCreditAccount(int id, CreditAccount account) {
         User user = usersTable.get(id);
         if (user != null) {
-            List<CreditAccount> userCreditAccounts = creditAccountsByClientIdTable.get(id);
+            List<CreditAccount> userCreditAccounts = creditAccountsByUserIdTable.get(id);
             userCreditAccounts.add(account);
             return true;
         }
@@ -69,9 +69,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean addPaymentAccount(int id, PaymentAccount account) {
-        User client = usersTable.get(id);
-        if (client != null) {
-            List<PaymentAccount> userCreditAccounts = paymentAccountsByClientIdTable.get(id);
+        User user = usersTable.get(id);
+        if (user != null) {
+            List<PaymentAccount> userCreditAccounts = paymentAccountsByUserIdTable.get(id);
             userCreditAccounts.add(account);
             return true;
         }
@@ -80,12 +80,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<PaymentAccount> getAllPaymentAccountsByUserId(int id) {
-        return paymentAccountsByClientIdTable.get(id);
+        return paymentAccountsByUserIdTable.get(id);
     }
 
     @Override
     public List<CreditAccount> getAllCreditAccountsByUserId(int id) {
-        return creditAccountsByClientIdTable.get(id);
+        return creditAccountsByUserIdTable.get(id);
     }
 
     @Override
@@ -94,17 +94,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getClientById(int id) {
+    public User getUserById(int id) {
         User user = usersTable.get(id);
         if (user == null) {
-            System.err.println("Client with id " + id + " is not found");
+            System.err.println("User with id " + id + " is not found");
         }
         return user;
     }
 
     @Override
-    public void printClientData(int id, boolean withAccounts) {
-        User user = getClientById(id);
+    public void printUserData(int id, boolean withAccounts) {
+        User user = getUserById(id);
 
         if (user == null) {
             return;

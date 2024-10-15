@@ -16,7 +16,7 @@ import java.util.Random;
 public class BankServiceImpl implements BankService {
     private final Map<Integer, Bank> banksTable = new HashMap<>();
     private final Map<Integer, List<BankOffice>> officesByBankIdTable = new HashMap<>();
-    private final Map<Integer, List<User>> clientsByBankIdTable = new HashMap<>();
+    private final Map<Integer, List<User>> usersByBankIdTable = new HashMap<>();
     private BankOfficeService bankOfficeService;
     private UserService userService;
 
@@ -26,7 +26,7 @@ public class BankServiceImpl implements BankService {
     }
 
     @Override
-    public void setClientService(UserService userService) {
+    public void setUserService(UserService userService) {
         this.userService = userService;
     }
 
@@ -56,7 +56,7 @@ public class BankServiceImpl implements BankService {
 
         banksTable.put(newBank.getId(), newBank);
         officesByBankIdTable.put(newBank.getId(), new ArrayList<>());
-        clientsByBankIdTable.put(newBank.getId(), new ArrayList<>());
+        usersByBankIdTable.put(newBank.getId(), new ArrayList<>());
 
         return newBank;
     }
@@ -113,11 +113,11 @@ public class BankServiceImpl implements BankService {
                 bankOfficeService.printBankOfficeData(office.getId());
             });
         }
-        List<User> clients = clientsByBankIdTable.get(bankId);
-        if (clients != null) {
-            System.out.println("Clients:");
-            clients.forEach((User user) -> {
-                userService.printClientData(user.getId(), false);
+        List<User> users = usersByBankIdTable.get(bankId);
+        if (users != null) {
+            System.out.println("users:");
+            users.forEach((User user) -> {
+                userService.printUserData(user.getId(), false);
             });
         }
         System.out.println("=====================");
@@ -171,29 +171,29 @@ public class BankServiceImpl implements BankService {
     }
 
     @Override
-    public boolean addClient(int id, User user) {
+    public boolean addUser(int id, User user) {
         Bank bank = getBankById(id);
         if (bank != null && user != null) {
             user.setBank(bank);
             bank.setUserCount(bank.getUserCount() + 1);
-            List<User> clients = clientsByBankIdTable.get(id);
-            clients.add(user);
+            List<User> users = usersByBankIdTable.get(id);
+            users.add(user);
             return true;
         }
         return false;
     }
 
     @Override
-    public boolean removeClient(Bank bank, User user) {
+    public boolean removeUser(Bank bank, User user) {
         if (bank != null && user != null) {
-            int newClientCount = bank.getUserCount() - 1;
+            int newUserCount = bank.getUserCount() - 1;
 
-            if (newClientCount < 0) {
-                System.err.println("Error: Bank - cannot remove user, no clients");
+            if (newUserCount < 0) {
+                System.err.println("Error: Bank - cannot remove user, no users");
                 return false;
             }
 
-            bank.setUserCount(newClientCount);
+            bank.setUserCount(newUserCount);
             return true;
         }
         return false;

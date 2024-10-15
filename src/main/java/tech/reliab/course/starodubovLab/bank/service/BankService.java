@@ -15,7 +15,7 @@ public interface BankService {
 
     public List<BankOffice> getAllOfficesByBankId(int id);
 
-    public void setClientService(UserService bankOfficeService);
+    public void setUserService(UserService bankOfficeService);
 
     public boolean deleteBankById(int bankId);
 
@@ -31,9 +31,9 @@ public interface BankService {
 
     public boolean removeEmployee(Bank bank, Employee employee);
 
-    public boolean addClient(int id, User client);
+    public boolean addUser(int id, User user);
 
-    public boolean removeClient(Bank bank, User client);
+    public boolean removeUser(Bank bank, User user);
 
     public BigDecimal calculateInterestRate(Bank bank);
 

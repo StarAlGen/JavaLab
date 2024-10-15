@@ -63,7 +63,7 @@ public class Bank {
                 ",\n officeCount='" + getOfficeCount() + "'" +
                 ",\n atmCount='" + getAtmCount() + "'" +
                 ",\n employeeCount='" + getEmployeeCount() + "'" +
-                ",\n clientCount='" + getUserCount() + "'" +
+                ",\n userCount='" + getUserCount() + "'" +
                 ",\n rating='" + getRating() + "'" +
                 ",\n totalMoney='" + String.format("%.2f", getTotalMoney()) + "'" +
                 ",\n interestRate='" + String.format("%.2f", getInterestRate()) + "'" +

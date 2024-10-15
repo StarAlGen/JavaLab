@@ -42,7 +42,7 @@ public class CreditAccountServiceImpl implements CreditAccountService {
 
         CreditAccount newAccount = new CreditAccount(creditAccount);
         creditAccountsTable.put(newAccount.getId(), newAccount);
-        userService.addCreditAccount(newAccount.getClient().getId(), newAccount);
+        userService.addCreditAccount(newAccount.getUser().getId(), newAccount);
 
         return newAccount;
     }

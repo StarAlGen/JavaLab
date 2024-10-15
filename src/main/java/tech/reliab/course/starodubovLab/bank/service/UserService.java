@@ -10,9 +10,9 @@ import java.util.List;
 public interface UserService {
     User create(User user);
 
-    public void printClientData(int id, boolean withAccounts);
+    public void printUserData(int id, boolean withAccounts);
 
-    public User getClientById(int id);
+    public User getUserById(int id);
 
     public List<User> getAllUsers();
 

@@ -105,7 +105,7 @@ public class BankOfficeServiceImpl implements BankOfficeService {
             return false;
         }
 
-        if (!bankOffice.getIsCashDepositAvailable()) {
+        if (!bankOffice.isCashDepositAvailable()) {
             System.err.println("Error: BankOffice - cannot deposit money - office cannot accept deposit");
             return false;
         }
@@ -126,7 +126,7 @@ public class BankOfficeServiceImpl implements BankOfficeService {
             return false;
         }
 
-        if (!bankOffice.getIsCashWithdrawalAvailable()) {
+        if (!bankOffice.isCashWithdrawalAvailable()) {
             System.err.println("Error: BankOffice - cannot withdraw money - office cannot give withdrawal");
             return false;
         }
@@ -145,7 +145,7 @@ public class BankOfficeServiceImpl implements BankOfficeService {
     public boolean installAtm(int id, BankAtm bankAtm) {
         BankOffice bankOffice = getBankOfficeById(id);
         if (bankOffice != null && bankAtm != null) {
-            if (!bankOffice.getIsAtmPlaceable()) {
+            if (!bankOffice.isAtmPlaceable()) {
                 System.err.println("Error: BankOffice - cannot install atm");
                 return false;
             }
