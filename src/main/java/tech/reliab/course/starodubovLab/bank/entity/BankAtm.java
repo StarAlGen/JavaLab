@@ -1,7 +1,14 @@
 package tech.reliab.course.starodubovLab.bank.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.math.BigDecimal;
 
+@Setter
+@Getter
+@AllArgsConstructor
 public class BankAtm {
     public enum Status {
         NOT_WORKING,
@@ -69,22 +76,6 @@ public class BankAtm {
         this.maintenanceCost = maintenanceCost;
     }
 
-    public BankAtm(int id, String name, String address, Status status, Bank bank, BankOffice bankOffice,
-                   Employee employee, boolean isCashWithdrawalAvailable, boolean isCashDepositAvailable, BigDecimal totalMoney,
-                   BigDecimal maintenanceCost) {
-        this.id = id;
-        this.name = name;
-        this.address = address;
-        this.status = status;
-        this.bank = bank;
-        this.bankOffice = bankOffice;
-        this.employee = employee;
-        this.isCashWithdrawalAvailable = isCashWithdrawalAvailable;
-        this.isCashDepositAvailable = isCashDepositAvailable;
-        this.totalMoney = totalMoney;
-        this.maintenanceCost = maintenanceCost;
-    }
-
     @Override
     public String toString() {
         return "BankAtm:{" +
@@ -95,107 +86,11 @@ public class BankAtm {
                 ",\n bank='" + getBank().getName() + "'" +
                 ",\n bankOffice='" + getBankOffice() + "'" +
                 ",\n employee='" + getEmployee() + "'" +
-                ",\n isCashWithdrawalAvailable='" + isIsCashWithdrawalAvailable() + "'" +
-                ",\n isCashDepositAvailable='" + isIsCashDepositAvailable() + "'" +
+                ",\n isCashWithdrawalAvailable='" + isCashWithdrawalAvailable() + "'" +
+                ",\n isCashDepositAvailable='" + isCashDepositAvailable() + "'" +
                 ",\n totalMoney='" + String.format("%.2f", getTotalMoney()) + "'" +
                 ",\n maintenanceCost='" + String.format("%.2f", getMaintenanceCost()) + "'" +
                 "\n}";
-    }
-
-    public int getId() {
-        return this.id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getAddress() {
-        return this.address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public Status getStatus() {
-        return this.status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
-    public Bank getBank() {
-        return this.bank;
-    }
-
-    public void setBank(Bank bank) {
-        this.bank = bank;
-    }
-
-    public BankOffice getBankOffice() {
-        return this.bankOffice;
-    }
-
-    public void setBankOffice(BankOffice bankOffice) {
-        this.bankOffice = bankOffice;
-    }
-
-    public Employee getEmployee() {
-        return this.employee;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
-
-    public boolean isIsCashWithdrawalAvailable() {
-        return this.isCashWithdrawalAvailable;
-    }
-
-    public boolean getIsCashWithdrawalAvailable() {
-        return this.isCashWithdrawalAvailable;
-    }
-
-    public void setIsCashWithdrawalAvailable(boolean isCashWithdrawalAvailable) {
-        this.isCashWithdrawalAvailable = isCashWithdrawalAvailable;
-    }
-
-    public boolean isIsCashDepositAvailable() {
-        return this.isCashDepositAvailable;
-    }
-
-    public boolean getIsCashDepositAvailable() {
-        return this.isCashDepositAvailable;
-    }
-
-    public void setIsCashDepositAvailable(boolean isCashDepositAvailable) {
-        this.isCashDepositAvailable = isCashDepositAvailable;
-    }
-
-    public BigDecimal getTotalMoney() {
-        return this.totalMoney;
-    }
-
-    public void setTotalMoney(BigDecimal totalMoney) {
-        this.totalMoney = totalMoney;
-    }
-
-    public BigDecimal getMaintenanceCost() {
-        return this.maintenanceCost;
-    }
-
-    public void setMaintenanceCost(BigDecimal maintenanceCost) {
-        this.maintenanceCost = maintenanceCost;
     }
 
     private void initWithDefaults() {

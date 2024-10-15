@@ -175,7 +175,7 @@ public class BankServiceImpl implements BankService {
         Bank bank = getBankById(id);
         if (bank != null && user != null) {
             user.setBank(bank);
-            bank.setClientCount(bank.getClientCount() + 1);
+            bank.setUserCount(bank.getUserCount() + 1);
             List<User> clients = clientsByBankIdTable.get(id);
             clients.add(user);
             return true;
@@ -186,14 +186,14 @@ public class BankServiceImpl implements BankService {
     @Override
     public boolean removeClient(Bank bank, User user) {
         if (bank != null && user != null) {
-            int newClientCount = bank.getClientCount() - 1;
+            int newClientCount = bank.getUserCount() - 1;
 
             if (newClientCount < 0) {
                 System.err.println("Error: Bank - cannot remove user, no clients");
                 return false;
             }
 
-            bank.setClientCount(newClientCount);
+            bank.setUserCount(newClientCount);
             return true;
         }
         return false;

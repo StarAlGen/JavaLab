@@ -1,7 +1,12 @@
 package tech.reliab.course.starodubovLab.bank.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.math.BigDecimal;
 
+@Setter
+@Getter
 public class Bank {
     private static int currentId;
     public static final BigDecimal MAX_RATING = new BigDecimal("100");
@@ -12,7 +17,7 @@ public class Bank {
     private int officeCount;
     private int atmCount;
     private int employeeCount;
-    private int clientCount;
+    private int userCount;
     private byte rating;
     private BigDecimal totalMoney;
     private BigDecimal interestRate;
@@ -32,7 +37,7 @@ public class Bank {
         this.officeCount = bank.officeCount;
         this.atmCount = bank.atmCount;
         this.employeeCount = bank.employeeCount;
-        this.clientCount = bank.clientCount;
+        this.userCount = bank.userCount;
         this.rating = bank.rating;
         this.totalMoney = bank.totalMoney;
         this.interestRate = bank.interestRate;
@@ -58,83 +63,11 @@ public class Bank {
                 ",\n officeCount='" + getOfficeCount() + "'" +
                 ",\n atmCount='" + getAtmCount() + "'" +
                 ",\n employeeCount='" + getEmployeeCount() + "'" +
-                ",\n clientCount='" + getClientCount() + "'" +
+                ",\n clientCount='" + getUserCount() + "'" +
                 ",\n rating='" + getRating() + "'" +
                 ",\n totalMoney='" + String.format("%.2f", getTotalMoney()) + "'" +
                 ",\n interestRate='" + String.format("%.2f", getInterestRate()) + "'" +
                 "\n}";
-    }
-
-    public int getId() {
-        return this.id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getOfficeCount() {
-        return this.officeCount;
-    }
-
-    public void setOfficeCount(int officeCount) {
-        this.officeCount = officeCount;
-    }
-
-    public int getAtmCount() {
-        return this.atmCount;
-    }
-
-    public void setAtmCount(int atmCount) {
-        this.atmCount = atmCount;
-    }
-
-    public int getEmployeeCount() {
-        return this.employeeCount;
-    }
-
-    public void setEmployeeCount(int employeeCount) {
-        this.employeeCount = employeeCount;
-    }
-
-    public int getClientCount() {
-        return this.clientCount;
-    }
-
-    public void setClientCount(int clientCount) {
-        this.clientCount = clientCount;
-    }
-
-    public byte getRating() {
-        return this.rating;
-    }
-
-    public void setRating(byte rating) {
-        this.rating = rating;
-    }
-
-    public BigDecimal getTotalMoney() {
-        return this.totalMoney;
-    }
-
-    public void setTotalMoney(BigDecimal totalMoney) {
-        this.totalMoney = totalMoney;
-    }
-
-    public BigDecimal getInterestRate() {
-        return this.interestRate;
-    }
-
-    public void setInterestRate(BigDecimal interestRate) {
-        this.interestRate = interestRate;
     }
 
     private void initWithDefaults() {
@@ -142,7 +75,7 @@ public class Bank {
         officeCount = 0;
         atmCount = 0;
         employeeCount = 0;
-        clientCount = 0;
+        userCount = 0;
         rating = 0;
         totalMoney = new BigDecimal("0");
         interestRate = new BigDecimal("0");

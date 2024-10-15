@@ -1,8 +1,15 @@
 package tech.reliab.course.starodubovLab.bank.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+@Setter
+@Getter
+@AllArgsConstructor
 public class Person {
     private static int currentId;
     protected int id;
@@ -31,43 +38,13 @@ public class Person {
         this.birthDate = birthDate;
     }
 
-    public Person(int id, String name, LocalDate birthDate) {
-        this.id = id;
-        this.name = name;
-        this.birthDate = birthDate;
-    }
-
     @Override
     public String toString() {
         return "Person:{" +
                 "\n id='" + getId() + "'" +
                 ",\n name='" + getName() + "'" +
-                ",\n birthdDate='" + getBirthDate().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) + "'" +
+                ",\n birthDate='" + getBirthDate().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) + "'" +
                 "\n}";
-    }
-
-    public int getId() {
-        return this.id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public LocalDate getBirthDate() {
-        return this.birthDate;
-    }
-
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
     }
 
     private void initWithDefaults() {

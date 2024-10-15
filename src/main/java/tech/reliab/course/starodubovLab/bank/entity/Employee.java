@@ -1,8 +1,13 @@
 package tech.reliab.course.starodubovLab.bank.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+@Setter
+@Getter
 public class Employee extends Person {
 
     public enum Job {
@@ -57,67 +62,11 @@ public class Employee extends Person {
                 "\n person='" + super.toString() + "'" +
                 ",\n job='" + getJob() + "'" +
                 ",\n bank='" + getBank().getName() + "'" +
-                ",\n isWorkingFromHome='" + isIsWorkingFromHome() + "'" +
+                ",\n isWorkingFromHome='" + isWorkingFromHome() + "'" +
                 ",\n bankOffice='" + getBankOffice() + "'" +
-                ",\n isCreditAvailable='" + isIsCreditAvailable() + "'" +
+                ",\n isCreditAvailable='" + isCreditAvailable() + "'" +
                 ",\n salary='" + String.format("%.2f", getSalary()) + "'" +
                 "\n}";
-    }
-
-    public Job getJob() {
-        return this.job;
-    }
-
-    public void setJob(Job job) {
-        this.job = job;
-    }
-
-    public Bank getBank() {
-        return this.bank;
-    }
-
-    public void setBank(Bank bank) {
-        this.bank = bank;
-    }
-
-    public boolean isIsWorkingFromHome() {
-        return this.isWorkingFromHome;
-    }
-
-    public boolean getIsWorkingFromHome() {
-        return this.isWorkingFromHome;
-    }
-
-    public void setIsWorkingFromHome(boolean isWorkingFromHome) {
-        this.isWorkingFromHome = isWorkingFromHome;
-    }
-
-    public BankOffice getBankOffice() {
-        return this.bankOffice;
-    }
-
-    public void setBankOffice(BankOffice bankOffice) {
-        this.bankOffice = bankOffice;
-    }
-
-    public boolean isIsCreditAvailable() {
-        return this.isCreditAvailable;
-    }
-
-    public boolean getIsCreditAvailable() {
-        return this.isCreditAvailable;
-    }
-
-    public void setIsCreditAvailable(boolean isCreditAvailable) {
-        this.isCreditAvailable = isCreditAvailable;
-    }
-
-    public BigDecimal getSalary() {
-        return this.salary;
-    }
-
-    public void setSalary(BigDecimal salary) {
-        this.salary = salary;
     }
 
     private void initWithDefaults() {

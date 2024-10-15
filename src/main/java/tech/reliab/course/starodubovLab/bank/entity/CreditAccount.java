@@ -1,8 +1,15 @@
 package tech.reliab.course.starodubovLab.bank.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+@Setter
+@Getter
+@AllArgsConstructor
 public class CreditAccount extends Account {
     private LocalDate dateStart;
     private LocalDate dateEnd;
@@ -47,21 +54,6 @@ public class CreditAccount extends Account {
         this.paymentAccount = paymentAccount;
     }
 
-    public CreditAccount(int id, User user, Bank bank, LocalDate dateStart, LocalDate dateEnd, int monthCount,
-                         BigDecimal creditAmount, BigDecimal remainingCreditAmount, BigDecimal monthlyPayment,
-                         BigDecimal interestRate, Employee employee, PaymentAccount paymentAccount) {
-        super(id, user, bank);
-        this.dateStart = dateStart;
-        this.dateEnd = dateEnd;
-        this.monthCount = monthCount;
-        this.creditAmount = creditAmount;
-        this.remainingCreditAmount = remainingCreditAmount;
-        this.monthlyPayment = monthlyPayment;
-        this.interestRate = interestRate;
-        this.employee = employee;
-        this.paymentAccount = paymentAccount;
-    }
-
     @Override
     public String toString() {
         return "CreditAccount:{" +
@@ -76,78 +68,6 @@ public class CreditAccount extends Account {
                 ",\n employee='" + getEmployee() + "'" +
                 ",\n paymentAccount='" + getPaymentAccount() + "'" +
                 "\n}";
-    }
-
-    public LocalDate getDateStart() {
-        return this.dateStart;
-    }
-
-    public void setDateStart(LocalDate dateStart) {
-        this.dateStart = dateStart;
-    }
-
-    public LocalDate getDateEnd() {
-        return this.dateEnd;
-    }
-
-    public void setDateEnd(LocalDate dateEnd) {
-        this.dateEnd = dateEnd;
-    }
-
-    public int getMonthCount() {
-        return this.monthCount;
-    }
-
-    public void setMonthCount(int monthCount) {
-        this.monthCount = monthCount;
-    }
-
-    public BigDecimal getCreditAmount() {
-        return this.creditAmount;
-    }
-
-    public void setCreditAmount(BigDecimal creditAmount) {
-        this.creditAmount = creditAmount;
-    }
-
-    public BigDecimal getRemainingCreditAmount() {
-        return this.remainingCreditAmount;
-    }
-
-    public void setRemainingCreditAmount(BigDecimal remainingCreditAmount) {
-        this.remainingCreditAmount = remainingCreditAmount;
-    }
-
-    public BigDecimal getMonthlyPayment() {
-        return this.monthlyPayment;
-    }
-
-    public void setMonthlyPayment(BigDecimal monthlyPayment) {
-        this.monthlyPayment = monthlyPayment;
-    }
-
-    public BigDecimal getInterestRate() {
-        return this.interestRate;
-    }
-
-    public void setInterestRate(BigDecimal interestRate) {
-        this.interestRate = interestRate;
-    }
-
-    public Employee getEmployee() {
-        return this.employee;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
-
-    public PaymentAccount getPaymentAccount() {
-        return this.paymentAccount;
-    }
-
-    public void setPaymentAccount(PaymentAccount paymentAccount) {
-        this.paymentAccount = paymentAccount;
     }
 
     private void initWithDefaults() {
