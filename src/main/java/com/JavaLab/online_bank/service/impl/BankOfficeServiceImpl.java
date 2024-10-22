@@ -8,10 +8,12 @@ import com.JavaLab.online_bank.repository.BankOfficeRepository;
 import com.JavaLab.online_bank.repository.EmployeeRepository;
 import com.JavaLab.online_bank.service.BankOfficeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
 
+@Service
 public class BankOfficeServiceImpl implements BankOfficeService {
     @Autowired
     private BankOfficeRepository bankOfficeRepository;

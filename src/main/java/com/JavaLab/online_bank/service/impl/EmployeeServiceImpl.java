@@ -2,12 +2,13 @@ package com.JavaLab.online_bank.service.impl;
 
 import com.JavaLab.online_bank.entity.Employee;
 import com.JavaLab.online_bank.repository.EmployeeRepository;
-import com.JavaLab.online_bank.service.BankOfficeService;
 import com.JavaLab.online_bank.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class EmployeeServiceImpl implements EmployeeService {
     @Autowired
     private EmployeeRepository employeeRepository;

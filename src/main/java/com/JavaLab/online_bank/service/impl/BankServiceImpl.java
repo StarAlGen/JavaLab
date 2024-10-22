@@ -13,10 +13,12 @@ import com.JavaLab.online_bank.service.BankService;
 import com.JavaLab.online_bank.service.UserService;
 import com.JavaLab.online_bank.utils.BigRandom;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.*;
 
+@Service
 public class BankServiceImpl implements BankService {
     private BankOfficeService bankOfficeService;
     private UserService userService;

@@ -3,12 +3,13 @@ package com.JavaLab.online_bank.service.impl;
 import com.JavaLab.online_bank.entity.PaymentAccount;
 import com.JavaLab.online_bank.repository.PaymentAccountRepository;
 import com.JavaLab.online_bank.service.PaymentAccountService;
-import com.JavaLab.online_bank.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
 
+@Service
 public class PaymentAccountServiceImpl implements PaymentAccountService {
     @Autowired
     private PaymentAccountRepository paymentAccountRepository;

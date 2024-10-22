@@ -4,10 +4,12 @@ import com.JavaLab.online_bank.entity.CreditAccount;
 import com.JavaLab.online_bank.repository.CreditAccountRepository;
 import com.JavaLab.online_bank.service.CreditAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
 
+@Service
 public class CreditAccountServiceImpl implements CreditAccountService {
     @Autowired
     private CreditAccountRepository creditAccountRepository;
