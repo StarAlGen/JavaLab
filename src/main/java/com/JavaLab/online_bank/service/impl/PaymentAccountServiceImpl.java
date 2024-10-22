@@ -1,7 +1,5 @@
 package com.JavaLab.online_bank.service.impl;
 
-import
-
 import com.JavaLab.online_bank.entity.PaymentAccount;
 import com.JavaLab.online_bank.repository.PaymentAccountRepository;
 import com.JavaLab.online_bank.service.PaymentAccountService;
@@ -9,10 +7,7 @@ import com.JavaLab.online_bank.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class PaymentAccountServiceImpl implements PaymentAccountService {
     @Autowired
